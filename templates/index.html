@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', path='styles.css') }}"
+        />
+        <script src="{{ url_for('static', path='htmx.min.js') }}"></script>
+        <title>{{ title }}</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+
+    <body class="p-7 bg-black text-slate-200">
+        <div class="space-y-5">
+            <div>
+                <h1 class="text-xl font-bold">
+                    Hello, {{ request.client.host }}!
+                </h1>
+                <p class="text-xs">Template file: {{ template_file }}</p>
+                <p class="hover:animate-rainbow">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Deserunt ab debitis quis quaerat minus quibusdam alias,
+                    asperiores nam ad aliquam natus laudantium nisi quasi
+                    ducimus laboriosam non deleniti fugiat eaque.
+                </p>
+            </div>
+            <div>
+                <button
+                    hx-get="/form"
+                    hx-trigger="click"
+                    class="p-2 border-2 border-red-500 uppercase"
+                >
+                    show form
+                </button>
+            </div>
+        </div>
+        <!-- Hot reload script -->
+        {% if true %} {{ hot_reload.script(url_for('hot-reload')) | safe }} {%
+        endif%}
+    </body>
+</html>
